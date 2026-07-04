@@ -41,6 +41,9 @@ export const metadata: Metadata = {
       "I build solutions and experiences that solve real-world problems.",
     type: "website",
   },
+  icons: {
+    icon: '/icon.png',
+  },
   twitter: {
     card: "summary_large_image",
     title: "Devansh Singh | FullStack Web & iOS Developer",
