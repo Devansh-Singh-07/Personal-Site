@@ -44,11 +44,37 @@ body {
   }
 }
 
+@keyframes scroll-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.text-stroke {
+  -webkit-text-stroke: 2px black;
+  color: transparent;
+}
+.text-stroke-lime {
+  -webkit-text-stroke: 2px #E2FF3E;
+  color: transparent;
+}
+.text-stroke-white {
+  -webkit-text-stroke: 2px white;
+  color: transparent;
+}
+
 .animate-scroll-left {
   animation: scroll-left 30s linear infinite;
 }
 
-.animate-scroll-left:hover {
+.animate-scroll-right {
+  animation: scroll-right 30s linear infinite;
+}
+
+.animate-scroll-left:hover, .animate-scroll-right:hover {
   animation-play-state: paused;
 }
 

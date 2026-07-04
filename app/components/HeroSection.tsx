@@ -4,9 +4,9 @@ import { MessageCircle, FileText } from "lucide-react";
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen pt-48 px-16 flex flex-col md:flex-row justify-between items-stretch max-w-[1728px] mx-auto">
+    <section className="relative min-h-screen pt-30 px-16 flex flex-col md:flex-row justify-between items-stretch max-w-[1728px] mx-auto">
       {/* Left Content */}
-      <div className="flex-1 z-10 max-w-3xl flex flex-col justify-center">
+      <div className="flex-1 z-10 max-w-3xl flex flex-col justify-center pt-10">
         <div className="mb-4 animate-fade-in-up">
           <p className="font-body text-3xl font-bold">
             <span className="text-[#52057E]">●</span> FullStack Web & iOS
@@ -77,7 +77,7 @@ export default function HeroSection() {
         style={{ animationDelay: "500ms" }}
       >
         {/* Composition Wrapper */}
-        <div className="relative w-full h-full min-h-[900px]">
+        <div className="relative w-full h-full min-h-[850px]">
           {/* Purple Background - Trapezoid */}
           <div
             className="absolute inset-0 bg-[#52057E] "

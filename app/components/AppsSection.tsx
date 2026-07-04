@@ -1,63 +1,178 @@
+"use client";
+
+import { useState } from "react";
+import { Smartphone, Zap, Activity, Code, ChevronRight, ChevronLeft } from "lucide-react";
+
 export default function AppsSection() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   const apps = [
-    { name: "ClassMotion", color: "bg-blue-500", scale: "scale-90" },
-    { name: "DevDen", color: "bg-[#1E1E1E]", scale: "scale-100 z-10 animate-pulse-glow" },
-    { name: "RSMS", color: "bg-purple-500", scale: "scale-90" },
+    { 
+      name: "ClassMotion", 
+      category: "Education",
+      desc: "Intelligent classroom motion & attention tracker.", 
+      bgColor: "bg-blue-600",
+      icon: <Activity className="w-12 h-12 text-white" />
+    },
+    { 
+      name: "DevDen", 
+      category: "Developer Tools",
+      desc: "The ultimate ecosystem for developers. Build, track, and deploy seamlessly.", 
+      bgColor: "bg-[#52057E]",
+      icon: <Code className="w-12 h-12 text-white" />
+    },
+    { 
+      name: "RSMS", 
+      category: "Management",
+      desc: "Robust School Management System for modern institutions to handle administration at scale.", 
+      bgColor: "bg-[#1E1E1E]",
+      icon: <Zap className="w-12 h-12 text-white" />
+    }
   ];
 
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev + 1) % apps.length);
+  };
+
+  const handlePrev = () => {
+    setActiveIndex((prev) => (prev - 1 + apps.length) % apps.length);
+  };
+
   return (
-    <section id="apps" className="py-32 bg-black text-[#E2FF3E]">
-      <div className="max-w-[1728px] mx-auto px-16">
-        <h2 className="font-heading text-8xl md:text-[96px] mb-24 text-center text-[#E2FF3E]">
-          MY APPS
-        </h2>
-
-        <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-4 lg:gap-12">
-          {apps.map((app, i) => (
-            <div
-              key={i}
-              className={`relative w-[300px] h-[600px] md:w-[350px] md:h-[700px] rounded-[50px] border-[14px] border-[#333] bg-black shadow-2xl overflow-hidden flex flex-col transition-transform duration-500 hover:scale-105 ${app.scale}`}
-            >
-              {/* Dynamic Island (CSS mockup) */}
-              <div className="absolute top-4 left-1/2 -translate-x-1/2 w-[120px] h-[35px] bg-black rounded-full z-20 flex justify-end items-center px-4">
-                <div className="w-3 h-3 rounded-full bg-gray-800 border-[3px] border-[#111]" />
-              </div>
-
-              {/* Status Bar */}
-              <div className="absolute top-0 w-full h-[50px] z-10 flex justify-between items-end px-8 pb-2 text-white font-sans text-[14px] font-semibold">
-                <span>9:41</span>
-                <div className="flex gap-2 items-center">
-                  <div className="w-4 h-3 bg-white mask-signal" />
-                  <div className="w-4 h-3 bg-white mask-wifi" />
-                  <div className="w-6 h-3 border border-white rounded-[4px] p-[1px]">
-                    <div className="w-[80%] h-full bg-white rounded-[2px]" />
-                  </div>
-                </div>
-              </div>
-
-              {/* App Screen Content */}
-              <div className={`flex-1 w-full h-full ${app.color} pt-[60px] pb-[40px] px-6 flex flex-col`}>
-                <div className="mt-auto mb-auto text-center">
-                  <h3 className="font-heading text-4xl text-white mb-4">
-                    {app.name}
-                  </h3>
-                  <div className="w-16 h-16 bg-white/20 rounded-2xl mx-auto backdrop-blur-md flex justify-center items-center">
-                    <div className="w-8 h-8 bg-white rounded-lg" />
-                  </div>
-                </div>
-              </div>
-
-              {/* Home Indicator */}
-              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-[140px] h-[5px] bg-white rounded-full z-20" />
-            </div>
-          ))}
+    <section id="apps" className="py-32 bg-black text-[#E2FF3E] relative overflow-hidden">
+      <div className="max-w-[1728px] mx-auto px-8 md:px-16 relative z-10">
+        
+        {/* Header */}
+        <div className="mb-20">
+          <div className="flex items-center gap-4 mb-4">
+            <div className="w-12 h-2 bg-[#E2FF3E]" />
+            <span className="font-sans text-xl uppercase tracking-[0.3em] text-[#E2FF3E]">iOS Portfolio</span>
+          </div>
+          <h2 className="font-heading text-7xl md:text-[120px] leading-none text-white">
+            NATIVE <br/>
+            <span className="text-transparent text-stroke-lime">EXPERIENCES</span>
+          </h2>
         </div>
 
-        {/* Pagination Dots */}
-        <div className="flex justify-center gap-3 mt-16">
-          <div className="w-4 h-4 bg-[#E2FF3E] rounded-full" />
-          <div className="w-4 h-4 bg-gray-600 rounded-full" />
-          <div className="w-4 h-4 bg-gray-600 rounded-full" />
+        {/* 2-Column Split Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center mt-24">
+          
+          {/* Left Column: Circular Device Carousel */}
+          <div className="relative w-full h-[600px] flex justify-center items-center">
+            
+            {/* Navigation Arrows (Flanking the devices) */}
+            <button 
+              onClick={handlePrev}
+              className="absolute left-0 z-40 w-16 h-16 rounded-full border-2 border-gray-700 bg-black flex items-center justify-center hover:bg-gray-800 hover:border-[#E2FF3E] transition-colors text-white"
+            >
+              <ChevronLeft className="w-8 h-8" />
+            </button>
+
+            <button 
+              onClick={handleNext}
+              className="absolute right-0 z-40 w-16 h-16 rounded-full border-2 border-gray-700 bg-black flex items-center justify-center hover:bg-gray-800 hover:border-[#E2FF3E] transition-colors text-white"
+            >
+              <ChevronRight className="w-8 h-8" />
+            </button>
+
+            {/* Devices Container */}
+            <div className="relative w-[280px] h-[580px]">
+              {apps.map((app, i) => {
+                // Calculate position based on active index
+                // Since there are exactly 3 items:
+                // offset 0 = Active (Center)
+                // offset 1 = Right
+                // offset 2 = Left
+                const offset = (i - activeIndex + apps.length) % apps.length;
+                
+                let positionClass = "";
+                if (offset === 0) {
+                  // Active Center
+                  positionClass = "z-30 scale-100 translate-x-0 opacity-100 shadow-[0_0_80px_rgba(226,255,62,0.2)]";
+                } else if (offset === 1) {
+                  // Right Side
+                  positionClass = "z-20 scale-85 translate-x-[60%] opacity-40 hover:opacity-60 cursor-pointer";
+                } else if (offset === 2) {
+                  // Left Side
+                  positionClass = "z-20 scale-85 -translate-x-[60%] opacity-40 hover:opacity-60 cursor-pointer";
+                }
+
+                return (
+                  <div
+                    key={app.name}
+                    onClick={() => {
+                      if (offset === 1) handleNext();
+                      if (offset === 2) handlePrev();
+                    }}
+                    className={`absolute inset-0 rounded-[45px] border-[10px] border-[#222] bg-black shadow-2xl overflow-hidden flex flex-col transition-all duration-700 ease-out transform ${positionClass}`}
+                  >
+                    {/* Dynamic Island */}
+                    <div className="absolute top-3 left-1/2 -translate-x-1/2 w-[100px] h-[30px] bg-black rounded-full z-30 flex justify-end items-center px-3">
+                      <div className="w-2.5 h-2.5 rounded-full bg-gray-900 border-[2px] border-[#111]" />
+                    </div>
+
+                    {/* Status Bar */}
+                    <div className="absolute top-0 w-full h-[40px] z-20 flex justify-between items-end px-6 pb-2 text-white font-sans text-[12px] font-semibold mix-blend-difference">
+                      <span>9:41</span>
+                      <div className="flex gap-2 items-center">
+                        <div className="w-3 h-2.5 bg-white mask-signal" />
+                        <div className="w-3 h-2.5 bg-white mask-wifi" />
+                        <div className="w-5 h-2.5 border border-white rounded-[3px] p-[1px]">
+                          <div className="w-[80%] h-full bg-white rounded-[1.5px]" />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* App Content */}
+                    <div className={`flex-1 w-full h-full ${app.bgColor} pt-[70px] pb-[40px] px-6 flex flex-col relative`}>
+                      <div className="w-20 h-20 bg-white/20 rounded-[24px] backdrop-blur-xl border border-white/30 shadow-2xl flex justify-center items-center mb-8 transform group-hover:scale-110 transition-transform">
+                        {app.icon}
+                      </div>
+                      
+                      <div className="mt-auto z-10">
+                        <div className="inline-block px-3 py-1 bg-black/30 rounded-full backdrop-blur-md mb-3">
+                          <span className="font-sans text-xs font-bold text-white uppercase tracking-wider">{app.category}</span>
+                        </div>
+                        <h3 className="font-heading text-4xl text-white mb-2 leading-none">
+                          {app.name}
+                        </h3>
+                      </div>
+                    </div>
+
+                    {/* Home Indicator */}
+                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-[100px] h-[4px] bg-white/80 rounded-full z-30" />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Right Column: Active App Details */}
+          <div className="flex flex-col justify-center max-w-xl mx-auto lg:mx-0 pl-0 lg:pl-12 text-center lg:text-left mt-12 lg:mt-0">
+            {/* Animated content wrapper using standard CSS transitions driven by key */}
+            <div 
+              key={activeIndex} 
+              className="animate-fade-in-up"
+            >
+              <div className="inline-block px-6 py-2 bg-[#52057E] text-white rounded-full font-body text-xl font-bold uppercase tracking-widest mb-6">
+                {apps[activeIndex].category}
+              </div>
+              
+              <h3 className="font-heading text-6xl md:text-8xl text-white mb-8">
+                {apps[activeIndex].name}
+              </h3>
+              
+              <p className="font-sans text-xl md:text-2xl text-gray-300 font-medium leading-relaxed mb-12">
+                {apps[activeIndex].desc}
+              </p>
+
+              <button className="bg-[#E2FF3E] text-black rounded-[40px] px-8 py-4 font-body text-2xl hover:scale-105 transition-transform shadow-xl flex items-center gap-4 mx-auto lg:mx-0">
+                View Case Study
+                <ChevronRight className="w-6 h-6" />
+              </button>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
