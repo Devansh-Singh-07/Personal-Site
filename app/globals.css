@@ -1,26 +1,83 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-lime: #E2FF3E;
+  --color-purple: #52057E;
+  --color-dark: #1E1E1E;
+  --color-black: #000000;
+  --color-white: #FFFFFF;
+
+  --background: var(--color-lime);
+  --foreground: var(--color-black);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-lime: #E2FF3E;
+  --color-purple: #52057E;
+  --color-dark: #1E1E1E;
+
+  --font-heading: var(--font-black-han-sans);
+  --font-body: var(--font-acme);
+  --font-sans: var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Skill slider animation */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll-left {
+  animation: scroll-left 30s linear infinite;
+}
+
+.animate-scroll-left:hover {
+  animation-play-state: paused;
+}
+
+/* Smooth fade-in for sections */
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+}
+
+/* Phone mockup glow */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 30px rgba(82, 5, 126, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 60px rgba(82, 5, 126, 0.6);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
 }
