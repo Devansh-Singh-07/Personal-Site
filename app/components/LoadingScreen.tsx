@@ -8,15 +8,15 @@ export default function LoadingScreen() {
   const [shouldRender, setShouldRender] = useState(true);
 
   useEffect(() => {
-    // Start exit animation after 2 seconds
+    // Start exit animation after 1 second
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 1000);
 
     // Completely unmount after exit animation (700ms)
     const cleanup = setTimeout(() => {
       setShouldRender(false);
-    }, 2700);
+    }, 1700);
 
     return () => {
       clearTimeout(timer);
