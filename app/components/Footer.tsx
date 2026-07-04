@@ -1,8 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import { ArrowUp, Mail, Briefcase, GitBranch, FileText } from "lucide-react";
+import ResumeModal from "./ResumeModal";
 
 export default function Footer() {
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -54,17 +58,15 @@ export default function Footer() {
             <span className="font-body text-2xl font-bold uppercase tracking-widest">GitHub</span>
           </a>
 
-          <a 
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button 
+            onClick={() => setIsResumeOpen(true)}
             className="bg-[#1E1E1E] text-[#E2FF3E] border-[4px] border-[#E2FF3E] shadow-[6px_6px_0px_0px_rgba(226,255,62,0.3)] hover:shadow-[12px_12px_0px_0px_rgba(226,255,62,1)] rounded-[30px] p-6 flex flex-col items-center gap-4 hover:-translate-y-2 hover:-translate-x-2 transition-all group"
           >
             <div className="w-16 h-16 bg-[#E2FF3E] rounded-full flex justify-center items-center group-hover:scale-110 transition-transform">
               <FileText className="w-8 h-8 text-black" />
             </div>
             <span className="font-body text-2xl font-bold uppercase tracking-widest">Resume</span>
-          </a>
+          </button>
         </div>
 
         {/* Bottom Bar */}
@@ -85,6 +87,7 @@ export default function Footer() {
         </div>
 
       </div>
+      <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
     </footer>
   );
 }

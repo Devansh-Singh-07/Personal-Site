@@ -2,12 +2,13 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { MessageCircle, FileText, Mail, Briefcase, GitBranch, X } from "lucide-react";
+import ResumeModal from "./ResumeModal";
 
 export default function HeroSection() {
   const [isHovered, setIsHovered] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
 
   return (
     <section className="relative min-h-screen pt-30 px-6 md:px-16 flex flex-col md:flex-row justify-between items-stretch max-w-[1728px] mx-auto">
@@ -15,6 +16,9 @@ export default function HeroSection() {
       <div
         className={`fixed inset-0 z-40 bg-white/40 backdrop-blur-2xl transition-opacity duration-500 pointer-events-none ${isHovered ? 'opacity-100' : 'opacity-0'}`}
       />
+
+      {/* Resume Modal */}
+      <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
 
       {/* Contact Modal */}
       {isContactOpen && (
@@ -59,14 +63,14 @@ export default function HeroSection() {
                 </div>
               </a>
 
-              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="w-full bg-white border-[4px] border-black rounded-[24px] p-4 flex items-center justify-between hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all group">
+              <button onClick={() => { setIsContactOpen(false); setIsResumeOpen(true); }} className="w-full bg-white border-[4px] border-black rounded-[24px] p-4 flex items-center justify-between hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all group">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-black rounded-full flex justify-center items-center group-hover:scale-110 transition-transform">
                     <FileText className="w-6 h-6 text-white" />
                   </div>
-                  <span className="font-body text-2xl md:text-3xl font-bold text-black">Download Resume</span>
+                  <span className="font-body text-2xl md:text-3xl font-bold text-black">View Resume</span>
                 </div>
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -107,15 +111,13 @@ export default function HeroSection() {
             Contact me
             <MessageCircle className="w-5 h-5 md:w-8 md:h-8 shrink-0" />
           </button>
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={() => setIsResumeOpen(true)}
             className="bg-black text-[#E2FF3E] rounded-[40px] px-4 py-3 md:px-8 md:py-5 flex items-center justify-center gap-2 md:gap-4 font-body text-[14px] md:text-[32px] hover:scale-105 transition-transform shadow-lg flex-1 max-w-[290px]"
           >
             My Resume
             <FileText className="w-5 h-5 md:w-8 md:h-8 shrink-0" />
-          </a>
+          </button>
         </div>
 
         {/* Stats Row */}
