@@ -12,7 +12,7 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-8 w-full z-50 px-8 grid grid-cols-[1fr_auto_1fr] items-center max-w-[1728px] mx-auto animate-fade-in-up pointer-events-none">
-      
+
       {/* Left Column Spacer */}
       <div></div>
 
@@ -36,7 +36,7 @@ export default function Navbar() {
       <div className="flex justify-end pointer-events-auto">
         <Link
           href="#native"
-          className="bg-[#52057E] rounded-[40px] px-8 py-4 flex items-center gap-4 text-white font-body text-2xl md:text-3xl hover:bg-opacity-90 transition-all shadow-xl hover:scale-105"
+          className="hidden bg-[#52057E] rounded-[40px] px-8 py-4 items-center gap-4 text-white font-body text-2xl md:text-3xl hover:bg-opacity-90 transition-all shadow-xl hover:scale-105"
         >
           Go
           <Apple className="w-8 h-8" />

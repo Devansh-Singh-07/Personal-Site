@@ -56,8 +56,8 @@ export default function PlansSection() {
   ];
 
   return (
-    <section id="progress" className="py-32 bg-[#E2FF3E]">
-      <div className="max-w-[1728px] mx-auto px-16">
+    <section id="progress" className="py-32 bg-[#E2FF3E] hidden md:block">
+      <div className="max-w-[1728px] mx-auto px-6 md:px-16">
         <h2 className="font-heading text-8xl md:text-[96px] mb-16 text-black">
           My Plans
         </h2>
@@ -71,7 +71,7 @@ export default function PlansSection() {
                 <h3 className="font-sans text-4xl font-bold text-white mb-8 pb-4">
                   {col.title}
                 </h3>
-                
+
                 {/* Column Divider (except last one) */}
                 {cIdx < columns.length - 1 && (
                   <div className="absolute right-[-16px] top-[70px] bottom-0 w-[4px] bg-white opacity-20 rounded-full" />
@@ -90,14 +90,14 @@ export default function PlansSection() {
                       <p className="font-sans text-lg font-medium text-black mb-6 leading-snug">
                         {task.desc}
                       </p>
-                      
+
                       <div className="flex justify-between items-end mt-auto">
                         <div className="bg-[#52057E] rounded-lg px-4 py-1">
                           <span className="font-body text-white text-sm">
                             {task.priority}
                           </span>
                         </div>
-                        
+
                         <button className="w-10 h-10 bg-black rounded-lg flex justify-center items-center hover:bg-gray-800 transition-colors">
                           {task.icon}
                         </button>

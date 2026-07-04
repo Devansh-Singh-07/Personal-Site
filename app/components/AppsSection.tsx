@@ -7,24 +7,24 @@ export default function AppsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const apps = [
-    { 
-      name: "ClassMotion", 
+    {
+      name: "ClassMotion",
       category: "Education",
-      desc: "Intelligent classroom motion & attention tracker.", 
+      desc: "Intelligent classroom motion & attention tracker.",
       bgColor: "bg-blue-600",
       icon: <Activity className="w-12 h-12 text-white" />
     },
-    { 
-      name: "DevDen", 
+    {
+      name: "DevDen",
       category: "Developer Tools",
-      desc: "The ultimate ecosystem for developers. Build, track, and deploy seamlessly.", 
+      desc: "The ultimate ecosystem for developers. Build, track, and deploy seamlessly.",
       bgColor: "bg-[#52057E]",
       icon: <Code className="w-12 h-12 text-white" />
     },
-    { 
-      name: "RSMS", 
+    {
+      name: "RSMS",
       category: "Management",
-      desc: "Robust School Management System for modern institutions to handle administration at scale.", 
+      desc: "Robust School Management System for modern institutions to handle administration at scale.",
       bgColor: "bg-[#1E1E1E]",
       icon: <Zap className="w-12 h-12 text-white" />
     }
@@ -40,43 +40,43 @@ export default function AppsSection() {
 
   return (
     <section id="apps" className="py-32 bg-black text-[#E2FF3E] relative overflow-hidden">
-      <div className="max-w-[1728px] mx-auto px-8 md:px-16 relative z-10">
-        
+      <div className="max-w-[1728px] mx-auto px-6 md:px-16 relative z-10">
+
         {/* Header */}
         <div className="mb-20">
           <div className="flex items-center gap-4 mb-4">
             <div className="w-12 h-2 bg-[#E2FF3E]" />
             <span className="font-sans text-xl uppercase tracking-[0.3em] text-[#E2FF3E]">iOS Portfolio</span>
           </div>
-          <h2 className="font-heading text-7xl md:text-[120px] leading-none text-white">
-            NATIVE <br/>
+          <h2 className="font-heading text-5xl md:text-[120px] leading-none text-white">
+            NATIVE <br />
             <span className="text-transparent text-stroke-lime">EXPERIENCES</span>
           </h2>
         </div>
 
         {/* 2-Column Split Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center mt-24">
-          
+
           {/* Left Column: Circular Device Carousel */}
-          <div className="relative w-full h-[600px] flex justify-center items-center">
-            
+          <div className="relative w-full h-[450px] md:h-[600px] flex justify-center items-center">
+
             {/* Navigation Arrows (Flanking the devices) */}
             <button 
               onClick={handlePrev}
-              className="absolute left-0 z-40 w-16 h-16 rounded-full border-2 border-gray-700 bg-black flex items-center justify-center hover:bg-gray-800 hover:border-[#E2FF3E] transition-colors text-white"
+              className="absolute left-0 md:-left-4 lg:left-0 z-40 w-12 h-12 md:w-16 md:h-16 rounded-full border-2 border-gray-700 bg-black flex items-center justify-center hover:bg-gray-800 hover:border-[#E2FF3E] transition-colors text-white"
             >
-              <ChevronLeft className="w-8 h-8" />
+              <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
             </button>
 
             <button 
               onClick={handleNext}
-              className="absolute right-0 z-40 w-16 h-16 rounded-full border-2 border-gray-700 bg-black flex items-center justify-center hover:bg-gray-800 hover:border-[#E2FF3E] transition-colors text-white"
+              className="absolute right-0 md:-right-4 lg:right-0 z-40 w-12 h-12 md:w-16 md:h-16 rounded-full border-2 border-gray-700 bg-black flex items-center justify-center hover:bg-gray-800 hover:border-[#E2FF3E] transition-colors text-white"
             >
-              <ChevronRight className="w-8 h-8" />
+              <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
             </button>
 
             {/* Devices Container */}
-            <div className="relative w-[280px] h-[580px]">
+            <div className="relative w-[220px] h-[450px] md:w-[280px] md:h-[580px]">
               {apps.map((app, i) => {
                 // Calculate position based on active index
                 // Since there are exactly 3 items:
@@ -84,7 +84,7 @@ export default function AppsSection() {
                 // offset 1 = Right
                 // offset 2 = Left
                 const offset = (i - activeIndex + apps.length) % apps.length;
-                
+
                 let positionClass = "";
                 if (offset === 0) {
                   // Active Center
@@ -128,7 +128,7 @@ export default function AppsSection() {
                       <div className="w-20 h-20 bg-white/20 rounded-[24px] backdrop-blur-xl border border-white/30 shadow-2xl flex justify-center items-center mb-8 transform group-hover:scale-110 transition-transform">
                         {app.icon}
                       </div>
-                      
+
                       <div className="mt-auto z-10">
                         <div className="inline-block px-3 py-1 bg-black/30 rounded-full backdrop-blur-md mb-3">
                           <span className="font-sans text-xs font-bold text-white uppercase tracking-wider">{app.category}</span>
@@ -150,18 +150,18 @@ export default function AppsSection() {
           {/* Right Column: Active App Details */}
           <div className="flex flex-col justify-center max-w-xl mx-auto lg:mx-0 pl-0 lg:pl-12 text-center lg:text-left mt-12 lg:mt-0">
             {/* Animated content wrapper using standard CSS transitions driven by key */}
-            <div 
-              key={activeIndex} 
+            <div
+              key={activeIndex}
               className="animate-fade-in-up"
             >
               <div className="inline-block px-6 py-2 bg-[#52057E] text-white rounded-full font-body text-xl font-bold uppercase tracking-widest mb-6">
                 {apps[activeIndex].category}
               </div>
-              
-              <h3 className="font-heading text-6xl md:text-8xl text-white mb-8">
+
+              <h3 className="font-heading text-5xl md:text-8xl text-white mb-8">
                 {apps[activeIndex].name}
               </h3>
-              
+
               <p className="font-sans text-xl md:text-2xl text-gray-300 font-medium leading-relaxed mb-12">
                 {apps[activeIndex].desc}
               </p>

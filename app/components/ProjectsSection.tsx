@@ -27,8 +27,8 @@ export default function ProjectsSection() {
 
   return (
     <section id="projects" className="py-32 bg-[#E2FF3E] text-black">
-      <div className="max-w-[1728px] mx-auto px-16">
-        <h2 className="font-heading text-8xl md:text-[96px] mb-16">
+      <div className="max-w-[1728px] mx-auto px-6 md:px-16">
+        <h2 className="font-heading text-5xl md:text-[96px] mb-16">
           Other Projects
         </h2>
 
@@ -36,22 +36,22 @@ export default function ProjectsSection() {
           {projects.map((proj, idx) => (
             <div
               key={idx}
-              className="bg-white border-[6px] border-black rounded-[30px] p-10 hover:shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:-translate-x-2 transition-all duration-300 flex flex-col"
+              className="bg-white border-[6px] border-black rounded-[30px] p-6 md:p-10 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] md:shadow-none hover:shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:-translate-x-2 transition-all duration-300 flex flex-col"
             >
-              <div className="flex justify-between items-start mb-6">
-                <h3 className="font-body text-4xl font-bold">{proj.title}</h3>
+              <div className="flex justify-between items-start mb-6 gap-4">
+                <h3 className="font-body text-3xl md:text-4xl font-bold">{proj.title}</h3>
                 <Link
                   href="#"
-                  className="w-12 h-12 bg-[#52057E] rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform"
+                  className="w-10 h-10 md:w-12 md:h-12 bg-[#52057E] rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform shrink-0"
                 >
-                  <ArrowUpRight className="w-6 h-6" />
+                  <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6" />
                 </Link>
               </div>
-              
+
               <p className="font-sans text-xl mb-8 flex-1">
                 {proj.desc}
               </p>
-              
+
               <div className="flex flex-wrap gap-3 mt-auto">
                 {proj.tags.map(tag => (
                   <span key={tag} className="bg-gray-100 border-2 border-black rounded-full px-4 py-2 font-sans font-medium text-sm">
