@@ -3,10 +3,11 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { MessageCircle, FileText } from "lucide-react";
+import { MessageCircle, FileText, Mail, Briefcase, GitBranch, X } from "lucide-react";
 
 export default function HeroSection() {
   const [isHovered, setIsHovered] = useState(false);
+  const [isContactOpen, setIsContactOpen] = useState(false);
 
   return (
     <section className="relative min-h-screen pt-30 px-6 md:px-16 flex flex-col md:flex-row justify-between items-stretch max-w-[1728px] mx-auto">
@@ -14,6 +15,63 @@ export default function HeroSection() {
       <div 
         className={`fixed inset-0 z-40 bg-white/40 backdrop-blur-2xl transition-opacity duration-500 pointer-events-none ${isHovered ? 'opacity-100' : 'opacity-0'}`}
       />
+
+      {/* Contact Modal */}
+      {isContactOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-md animate-fade-in-up" style={{ animationDuration: '0.3s' }} onClick={() => setIsContactOpen(false)} />
+          
+          <div className="relative w-full max-w-xl bg-white border-[8px] border-black shadow-[20px_20px_0px_0px_rgba(0,0,0,1)] rounded-[40px] p-8 md:p-12 flex flex-col gap-8 animate-fade-in-up" style={{ animationDuration: '0.4s' }}>
+            <button 
+              onClick={() => setIsContactOpen(false)}
+              className="absolute top-6 right-6 w-12 h-12 bg-red-500 border-[4px] border-black rounded-full flex justify-center items-center hover:scale-110 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all"
+            >
+              <X className="w-6 h-6 text-black" strokeWidth={3} />
+            </button>
+
+            <h2 className="font-heading text-5xl md:text-7xl text-black">Let's Connect!</h2>
+
+            <div className="flex flex-col gap-4">
+              <a href="mailto:hello@example.com" className="w-full bg-[#E2FF3E] border-[4px] border-black rounded-[24px] p-4 flex items-center justify-between hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all group">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-black rounded-full flex justify-center items-center group-hover:scale-110 transition-transform">
+                    <Mail className="w-6 h-6 text-[#E2FF3E]" />
+                  </div>
+                  <span className="font-body text-2xl md:text-3xl font-bold text-black">Email Me</span>
+                </div>
+              </a>
+
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-full bg-[#52057E] border-[4px] border-black rounded-[24px] p-4 flex items-center justify-between hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all group">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-black rounded-full flex justify-center items-center group-hover:scale-110 transition-transform">
+                    <Briefcase className="w-6 h-6 text-white" />
+                  </div>
+                  <span className="font-body text-2xl md:text-3xl font-bold text-white">LinkedIn</span>
+                </div>
+              </a>
+
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="w-full bg-black border-[4px] border-black rounded-[24px] p-4 flex items-center justify-between hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[8px_8px_0px_0px_rgba(226,255,62,1)] transition-all group">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-white rounded-full flex justify-center items-center group-hover:scale-110 transition-transform">
+                    <GitBranch className="w-6 h-6 text-black" />
+                  </div>
+                  <span className="font-body text-2xl md:text-3xl font-bold text-white">GitHub</span>
+                </div>
+              </a>
+
+              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="w-full bg-white border-[4px] border-black rounded-[24px] p-4 flex items-center justify-between hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all group">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-black rounded-full flex justify-center items-center group-hover:scale-110 transition-transform">
+                    <FileText className="w-6 h-6 text-white" />
+                  </div>
+                  <span className="font-body text-2xl md:text-3xl font-bold text-black">Download Resume</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Left Content */}
       <div className="flex-1 z-10 max-w-3xl flex flex-col justify-center pt-10">
         <div className="mb-4 animate-fade-in-up">
@@ -42,20 +100,22 @@ export default function HeroSection() {
           className="flex flex-row flex-nowrap items-center gap-2 md:gap-6 mb-16 animate-fade-in-up w-full justify-start"
           style={{ animationDelay: "300ms" }}
         >
-          <Link
-            href="#contact"
+          <button
+            onClick={() => setIsContactOpen(true)}
             className="bg-[#52057E] text-white rounded-[40px] px-4 py-3 md:px-8 md:py-5 flex items-center justify-center gap-2 md:gap-4 font-body text-[14px] md:text-[32px] hover:scale-105 transition-transform shadow-lg flex-1 max-w-[290px]"
           >
             Contact me
             <MessageCircle className="w-5 h-5 md:w-8 md:h-8 shrink-0" />
-          </Link>
-          <Link
-            href="#resume"
+          </button>
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-black text-[#E2FF3E] rounded-[40px] px-4 py-3 md:px-8 md:py-5 flex items-center justify-center gap-2 md:gap-4 font-body text-[14px] md:text-[32px] hover:scale-105 transition-transform shadow-lg flex-1 max-w-[290px]"
           >
             My Resume
             <FileText className="w-5 h-5 md:w-8 md:h-8 shrink-0" />
-          </Link>
+          </a>
         </div>
 
         {/* Stats Row */}

@@ -11,7 +11,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-8 w-full z-50 px-8 grid grid-cols-[1fr_auto_1fr] items-center max-w-[1728px] mx-auto animate-fade-in-up pointer-events-none">
+    <nav className="fixed top-8 w-full z-50 px-8 grid grid-cols-[1fr_auto_1fr] items-center max-w-[1728px] mx-auto animate-fade-in-up pointer-events-none z-10000">
 
       {/* Left Column Spacer */}
       <div></div>
