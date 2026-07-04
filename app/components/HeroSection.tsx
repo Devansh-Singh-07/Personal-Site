@@ -1,10 +1,19 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { MessageCircle, FileText } from "lucide-react";
 
 export default function HeroSection() {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <section className="relative min-h-screen pt-30 px-6 md:px-16 flex flex-col md:flex-row justify-between items-stretch max-w-[1728px] mx-auto">
+      {/* Background Blur Overlay */}
+      <div 
+        className={`fixed inset-0 z-40 bg-white/40 backdrop-blur-2xl transition-opacity duration-500 pointer-events-none ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+      />
       {/* Left Content */}
       <div className="flex-1 z-10 max-w-3xl flex flex-col justify-center pt-10">
         <div className="mb-4 animate-fade-in-up">
@@ -35,14 +44,14 @@ export default function HeroSection() {
         >
           <Link
             href="#contact"
-            className="bg-[#52057E] text-white rounded-[40px] px-4 py-3 md:px-8 md:py-5 flex items-center justify-center gap-2 md:gap-4 font-body text-[14px] md:text-[32px] hover:scale-105 transition-transform shadow-lg flex-1 max-w-[220px]"
+            className="bg-[#52057E] text-white rounded-[40px] px-4 py-3 md:px-8 md:py-5 flex items-center justify-center gap-2 md:gap-4 font-body text-[14px] md:text-[32px] hover:scale-105 transition-transform shadow-lg flex-1 max-w-[290px]"
           >
             Contact me
             <MessageCircle className="w-5 h-5 md:w-8 md:h-8 shrink-0" />
           </Link>
           <Link
             href="#resume"
-            className="bg-black text-[#E2FF3E] rounded-[40px] px-4 py-3 md:px-8 md:py-5 flex items-center justify-center gap-2 md:gap-4 font-body text-[14px] md:text-[32px] hover:scale-105 transition-transform shadow-lg flex-1 max-w-[220px]"
+            className="bg-black text-[#E2FF3E] rounded-[40px] px-4 py-3 md:px-8 md:py-5 flex items-center justify-center gap-2 md:gap-4 font-body text-[14px] md:text-[32px] hover:scale-105 transition-transform shadow-lg flex-1 max-w-[290px]"
           >
             My Resume
             <FileText className="w-5 h-5 md:w-8 md:h-8 shrink-0" />
@@ -73,18 +82,30 @@ export default function HeroSection() {
 
       {/* Right Content (Image) */}
       <div
-        className="hidden md:block flex-1 w-full min-h-[600px] mt-16 md:mt-0 animate-fade-in-up"
+        className="hidden md:block flex-1 w-full min-h-[600px] mt-16 md:mt-0 animate-fade-in-up relative z-50"
         style={{ animationDelay: "500ms" }}
       >
         {/* Composition Wrapper */}
         <div className="relative w-full h-full min-h-[850px]">
           {/* Purple Background - Trapezoid */}
           <div
-            className="absolute inset-0 bg-[#52057E] "
+            className="absolute inset-0 bg-[#52057E] -z-10"
             style={{
               clipPath: "polygon(0% 60%, 110% 15%, 100% 100%, 0% 100%)",
             }}
           />
+
+          {/* Hover Text & Arrow */}
+          <div className={`absolute top-[40%] right-[80%] xl:right-[100%] flex items-center gap-4 transition-all duration-700 pointer-events-none z-50 ${isHovered ? 'opacity-100 scale-100' : 'opacity-0 scale-90 translate-x-10'}`}>
+            <span className="text-6xl md:text-8xl text-black font-medium -rotate-12 whitespace-nowrap" style={{ fontFamily: "'Caveat', cursive" }}>
+              Builder at heart
+            </span>
+            <svg className="w-24 h-24 text-black transform rotate-[15deg] mt-16" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              {/* Swooping arrow pointing right/down towards the image */}
+              <path d="M10 20 Q 50 20 80 70" stroke="currentColor" strokeWidth="5" strokeLinecap="round" fill="none" />
+              <path d="M 55 70 L 80 70 L 70 45" stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+            </svg>
+          </div>
 
           {/* Image Overlay */}
           <div className="absolute inset-0 z-10 flex justify-center items-end pointer-events-none">
@@ -93,8 +114,10 @@ export default function HeroSection() {
               alt="Devansh Singh"
               width={1000}
               height={1000}
-              className="w-auto h-full object-bottom transform hover:scale-105 transition-transform duration-700 pointer-events-auto"
+              className={`w-auto h-full object-bottom transform transition-transform duration-700 pointer-events-auto ${isHovered ? 'scale-[1.03] cursor-none' : 'scale-100 cursor-default'}`}
               priority
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
             />
           </div>
         </div>

@@ -39,18 +39,18 @@ export default function AppsSection() {
   };
 
   return (
-    <section id="apps" className="py-32 bg-black text-[#E2FF3E] relative overflow-hidden">
+    <section id="apps" className="py-32 bg-[#E2FF3E] text-black relative overflow-hidden">
       <div className="max-w-[1728px] mx-auto px-6 md:px-16 relative z-10">
 
         {/* Header */}
         <div className="mb-20">
           <div className="flex items-center gap-4 mb-4">
-            <div className="w-12 h-2 bg-[#E2FF3E]" />
-            <span className="font-sans text-xl uppercase tracking-[0.3em] text-[#E2FF3E]">iOS Portfolio</span>
+            <div className="w-12 h-2 bg-[#52057E]" />
+            <span className="font-sans text-xl font-bold uppercase tracking-[0.3em] text-[#52057E]">iOS Portfolio</span>
           </div>
-          <h2 className="font-heading text-5xl md:text-[120px] leading-none text-white">
+          <h2 className="font-heading text-5xl md:text-[120px] leading-none text-black">
             NATIVE <br />
-            <span className="text-transparent text-stroke-lime">EXPERIENCES</span>
+            <span className="text-transparent text-stroke">EXPERIENCES</span>
           </h2>
         </div>
 
@@ -63,14 +63,14 @@ export default function AppsSection() {
             {/* Navigation Arrows (Flanking the devices) */}
             <button 
               onClick={handlePrev}
-              className="absolute left-0 md:-left-4 lg:left-0 z-40 w-12 h-12 md:w-16 md:h-16 rounded-full border-2 border-gray-700 bg-black flex items-center justify-center hover:bg-gray-800 hover:border-[#E2FF3E] transition-colors text-white"
+              className="absolute left-0 md:-left-4 lg:left-0 z-40 w-12 h-12 md:w-16 md:h-16 rounded-full border-[4px] border-black bg-white flex items-center justify-center hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all text-black"
             >
               <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
             </button>
 
             <button 
               onClick={handleNext}
-              className="absolute right-0 md:-right-4 lg:right-0 z-40 w-12 h-12 md:w-16 md:h-16 rounded-full border-2 border-gray-700 bg-black flex items-center justify-center hover:bg-gray-800 hover:border-[#E2FF3E] transition-colors text-white"
+              className="absolute right-0 md:-right-4 lg:right-0 z-40 w-12 h-12 md:w-16 md:h-16 rounded-full border-[4px] border-black bg-white flex items-center justify-center hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all text-black"
             >
               <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
             </button>
@@ -88,13 +88,13 @@ export default function AppsSection() {
                 let positionClass = "";
                 if (offset === 0) {
                   // Active Center
-                  positionClass = "z-30 scale-100 translate-x-0 opacity-100 shadow-[0_0_80px_rgba(226,255,62,0.2)]";
+                  positionClass = "z-30 scale-100 translate-x-0 opacity-100";
                 } else if (offset === 1) {
                   // Right Side
-                  positionClass = "z-20 scale-85 translate-x-[60%] opacity-40 hover:opacity-60 cursor-pointer";
+                  positionClass = "z-20 scale-85 translate-x-[60%] opacity-50 hover:opacity-100 hover:-translate-y-2 cursor-pointer";
                 } else if (offset === 2) {
                   // Left Side
-                  positionClass = "z-20 scale-85 -translate-x-[60%] opacity-40 hover:opacity-60 cursor-pointer";
+                  positionClass = "z-20 scale-85 -translate-x-[60%] opacity-50 hover:opacity-100 hover:-translate-y-2 cursor-pointer";
                 }
 
                 return (
@@ -104,7 +104,7 @@ export default function AppsSection() {
                       if (offset === 1) handleNext();
                       if (offset === 2) handlePrev();
                     }}
-                    className={`absolute inset-0 rounded-[45px] border-[10px] border-[#222] bg-black shadow-2xl overflow-hidden flex flex-col transition-all duration-700 ease-out transform ${positionClass}`}
+                    className={`absolute inset-0 rounded-[45px] border-[8px] border-black bg-black overflow-hidden flex flex-col transition-all duration-700 ease-out transform ${positionClass}`}
                   >
                     {/* Dynamic Island */}
                     <div className="absolute top-3 left-1/2 -translate-x-1/2 w-[100px] h-[30px] bg-black rounded-full z-30 flex justify-end items-center px-3">
@@ -154,21 +154,21 @@ export default function AppsSection() {
               key={activeIndex}
               className="animate-fade-in-up"
             >
-              <div className="inline-block px-6 py-2 bg-[#52057E] text-white rounded-full font-body text-xl font-bold uppercase tracking-widest mb-6">
+              <div className="inline-block px-6 py-2 bg-[#52057E] text-white border-[4px] border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] rounded-full font-body text-xl font-bold uppercase tracking-widest mb-8">
                 {apps[activeIndex].category}
               </div>
 
-              <h3 className="font-heading text-5xl md:text-8xl text-white mb-8">
+              <h3 className="font-heading text-5xl md:text-8xl text-black mb-8">
                 {apps[activeIndex].name}
               </h3>
 
-              <p className="font-sans text-xl md:text-2xl text-gray-300 font-medium leading-relaxed mb-12">
+              <p className="font-sans text-xl md:text-2xl text-black font-bold leading-relaxed mb-12">
                 {apps[activeIndex].desc}
               </p>
 
-              <button className="bg-[#E2FF3E] text-black rounded-[40px] px-8 py-4 font-body text-2xl hover:scale-105 transition-transform shadow-xl flex items-center gap-4 mx-auto lg:mx-0">
+              <button className="bg-white text-black rounded-[40px] px-8 py-4 font-body text-2xl font-bold transition-all border-[4px] border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:-translate-x-2 hover:shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] flex items-center gap-4 mx-auto lg:mx-0">
                 View Case Study
-                <ChevronRight className="w-6 h-6" />
+                <ChevronRight className="w-6 h-6 border-[2px] border-black rounded-full" />
               </button>
             </div>
           </div>
