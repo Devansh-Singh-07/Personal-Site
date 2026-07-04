@@ -8,7 +8,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-black text-[#E2FF3E] border-t-[8px] border-black pt-20 pb-12 px-6 md:px-16 relative overflow-hidden z-20">
+    <footer id="contact" className="bg-black text-[#E2FF3E] border-t-[8px] border-black pt-20 pb-12 px-6 md:px-16 relative overflow-hidden z-20">
       <div className="max-w-[1728px] mx-auto flex flex-col items-center">
         
         {/* Massive Headline */}
@@ -21,7 +21,7 @@ export default function Footer() {
         {/* Social Links & Resume Grid */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 w-full max-w-5xl mb-24">
           <a 
-            href="mailto:hello@example.com"
+            href="mailto:devanshsingh0412@gmail.com"
             className="bg-[#E2FF3E] text-black border-[4px] border-black shadow-[6px_6px_0px_0px_rgba(226,255,62,0.3)] hover:shadow-[12px_12px_0px_0px_rgba(226,255,62,1)] rounded-[30px] p-6 flex flex-col items-center gap-4 hover:-translate-y-2 hover:-translate-x-2 transition-all group"
           >
             <div className="w-16 h-16 bg-black rounded-full flex justify-center items-center group-hover:scale-110 transition-transform">
@@ -31,7 +31,7 @@ export default function Footer() {
           </a>
 
           <a 
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/devansh-pratap-singh07/"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-[#52057E] text-white border-[4px] border-black shadow-[6px_6px_0px_0px_rgba(82,5,126,0.3)] hover:shadow-[12px_12px_0px_0px_rgba(82,5,126,1)] rounded-[30px] p-6 flex flex-col items-center gap-4 hover:-translate-y-2 hover:-translate-x-2 transition-all group"
@@ -43,7 +43,7 @@ export default function Footer() {
           </a>
 
           <a 
-            href="https://github.com"
+            href="https://github.com/Devansh-Singh-07"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-white text-black border-[4px] border-black shadow-[6px_6px_0px_0px_rgba(255,255,255,0.3)] hover:shadow-[12px_12px_0px_0px_rgba(255,255,255,1)] rounded-[30px] p-6 flex flex-col items-center gap-4 hover:-translate-y-2 hover:-translate-x-2 transition-all group"

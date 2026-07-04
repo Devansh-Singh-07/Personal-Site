@@ -4,9 +4,10 @@ import { Apple } from "lucide-react";
 export default function Navbar() {
   const links = [
     { name: "Home", href: "#" },
+    { name: "Arsenal", href: "#skills" },
+    { name: "iOS", href: "#apps" },
     { name: "Projects", href: "#projects" },
-    { name: "Skills", href: "#skills" },
-    { name: "Progress", href: "#progress" },
+    { name: "Plans", href: "#progress" },
     { name: "Contact", href: "#contact" },
   ];
 
