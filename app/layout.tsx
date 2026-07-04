@@ -42,7 +42,12 @@ export const metadata: Metadata = {
     type: "website",
   },
   icons: {
-    icon: '/icon.png',
+    icon: [
+      { url: '/icon.png?v=2', type: 'image/png' }
+    ],
+    apple: [
+      { url: '/apple-icon.png?v=2', type: 'image/png' }
+    ],
   },
   twitter: {
     card: "summary_large_image",
