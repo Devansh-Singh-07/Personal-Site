@@ -39,7 +39,7 @@ export default function AppsSection() {
   };
 
   return (
-    <section id="apps" className="py-32 bg-[#E2FF3E] text-black relative overflow-hidden">
+    <section id="apps" className="py-20 bg-[#E2FF3E] text-black relative overflow-hidden">
       <div className="max-w-[1728px] mx-auto px-6 md:px-16 relative z-10">
 
         {/* Header */}

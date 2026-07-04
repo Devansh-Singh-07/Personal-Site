@@ -158,7 +158,7 @@ export default function PlansSection() {
   };
 
   return (
-    <section id="progress" className="py-40 bg-[#E2FF3E] hidden md:block relative overflow-hidden text-black">
+    <section id="progress" className="py-20 bg-[#E2FF3E] hidden md:block relative overflow-hidden text-black">
       <div className="max-w-[1728px] mx-auto px-6 md:px-16 relative z-10">
         <div className="flex justify-between items-end mb-16">
           <h2 className="font-heading text-5xl md:text-[120px] leading-none tracking-tight uppercase">

@@ -2,7 +2,7 @@ import { Sparkles, Code2, Database, Smartphone, GitBranch, Layers, Cpu, Code } f
 
 export default function SkillsSection() {
   return (
-    <section id="skills" className="py-32 bg-[#E2FF3E] text-black">
+    <section id="skills" className="py-20 bg-[#E2FF3E] text-black">
       <div className="max-w-[1728px] mx-auto px-8 md:px-16">
         <h2 className="font-heading text-5xl md:text-[120px] leading-none mb-16 uppercase text-black">
           Arsenal
