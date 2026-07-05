@@ -20,6 +20,7 @@ export default function LoadingScreen() {
 
     return () => {
       clearTimeout(timer);
+      
       clearTimeout(cleanup);
     };
   }, []);
