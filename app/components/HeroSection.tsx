@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { MessageCircle, FileText, Mail, Briefcase, GitBranch, X } from "lucide-react";
 import ResumeModal from "./ResumeModal";
@@ -9,6 +9,27 @@ export default function HeroSection() {
   const [isHovered, setIsHovered] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isResumeOpen, setIsResumeOpen] = useState(false);
+
+  const hoverTimeout = useRef<NodeJS.Timeout | null>(null);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+    hoverTimeout.current = setTimeout(() => {
+      setIsHovered(false);
+    }, 2000); // Effect lasts 3 seconds max
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+    };
+  }, []);
 
   return (
     <section className="relative min-h-screen pt-30 px-6 md:px-16 flex flex-col md:flex-row justify-between items-stretch max-w-[1728px] mx-auto">
@@ -144,11 +165,11 @@ export default function HeroSection() {
 
       {/* Right Content (Image) */}
       <div
-        className="hidden md:block flex-1 w-full min-h-[600px] mt-16 md:mt-0 animate-fade-in-up relative z-50"
+        className="hidden md:flex flex-col flex-1 w-full mt-16 md:mt-0 animate-fade-in-up relative z-50"
         style={{ animationDelay: "500ms" }}
       >
         {/* Composition Wrapper */}
-        <div className="relative w-full h-full min-h-[850px]">
+        <div className="relative w-full flex-1 min-h-[500px] lg:min-h-[650px] xl:min-h-[850px]">
           {/* Purple Background - Trapezoid */}
           <div
             className="absolute inset-0 bg-[#52057E] -z-10"
@@ -178,8 +199,8 @@ export default function HeroSection() {
               height={1000}
               className={`w-auto h-full object-bottom transform transition-transform duration-700 pointer-events-auto ${isHovered ? 'scale-[1.03] cursor-none' : 'scale-100 cursor-default'}`}
               priority
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
             />
           </div>
         </div>
