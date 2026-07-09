@@ -57,6 +57,8 @@ export const metadata: Metadata = {
   },
 };
 
+import CustomCursor from "./components/CustomCursor";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -67,7 +69,10 @@ export default function RootLayout({
       lang="en"
       className={`${blackHanSans.variable} ${acme.variable} ${inter.variable} antialiased`}
     >
-      <body className="min-h-screen">{children}</body>
+      <body className="min-h-screen">
+        <CustomCursor />
+        {children}
+      </body>
     </html>
   );
 }
