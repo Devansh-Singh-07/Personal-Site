@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Play, Check, Circle, GripHorizontal } from "lucide-react";
+import { Play, Check, Circle, GripHorizontal, MoveHorizontal } from "lucide-react";
+import { motion } from "framer-motion";
 
 type Priority = "Low" | "Medium" | "High";
 
@@ -136,7 +137,7 @@ export default function PlansSection() {
 
 
   const getThemeClasses = (theme: string, isDragOver: boolean) => {
-    const base = "rounded-[40px] p-8 flex flex-col relative transition-transform duration-300 border-[6px] border-black shadow-[16px_16px_0px_0px_rgba(0,0,0,1)]";
+    const base = "rounded-[40px] p-6 md:p-8 flex flex-col relative transition-transform duration-300 border-[6px] border-black shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] w-[85vw] shrink-0 snap-center md:w-auto min-h-[400px]";
     if (theme === "todo") {
       return `${base} bg-white text-black ${isDragOver ? "scale-[1.02]" : ""}`;
     }
@@ -150,7 +151,7 @@ export default function PlansSection() {
   };
 
   const getTaskClasses = (theme: string) => {
-    const base = "rounded-[24px] p-6 md:p-8 cursor-grab active:cursor-grabbing hover:-translate-y-2 hover:-translate-x-2 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 relative group border-[4px] border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]";
+    const base = "rounded-[24px] p-6 md:p-8 cursor-grab active:cursor-grabbing md:hover:-translate-y-2 md:hover:-translate-x-2 md:hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 relative group border-[4px] border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]";
     if (theme === "todo") return `${base} bg-[#E2FF3E] text-black`;
     if (theme === "inprogress") return `${base} bg-white text-black`;
     if (theme === "completed") return `${base} bg-white text-black`;
@@ -158,21 +159,32 @@ export default function PlansSection() {
   };
 
   return (
-    <section id="progress" className="py-20 bg-[#E2FF3E] hidden md:block relative overflow-hidden text-black">
-      <div className="max-w-[1728px] mx-auto px-6 md:px-16 relative z-10">
-        <div className="flex justify-between items-end mb-16">
-          <h2 className="font-heading text-5xl md:text-[120px] leading-none tracking-tight uppercase">
+    <section id="progress" className="py-20 bg-[#E2FF3E] relative overflow-hidden text-black block">
+      <div className="max-w-[1728px] mx-auto px-0 md:px-16 relative z-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-16 px-6 md:px-0 gap-6"
+        >
+          <h2 className="font-heading text-6xl md:text-[120px] leading-none tracking-tight uppercase">
             My <span className="text-[#52057E] text-stroke">Plans</span>
           </h2>
-          <p className="font-sans text-xl font-bold flex items-center gap-3 bg-white rounded-full px-8 py-4 border-[4px] border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
-            <GripHorizontal className="w-6 h-6" /> 
-            Drag & Drop to update
-          </p>
-        </div>
+          <div className="flex flex-col gap-2">
+            <p className="hidden md:flex font-sans text-xl font-bold items-center gap-3 bg-white rounded-full px-8 py-4 border-[4px] border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+              <GripHorizontal className="w-6 h-6" /> 
+              Drag & Drop to update
+            </p>
+            <p className="md:hidden flex font-sans text-sm font-bold items-center gap-2 bg-white rounded-full px-4 py-2 border-[3px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] w-fit">
+              <MoveHorizontal className="w-4 h-4" /> 
+              Swipe to view more
+            </p>
+          </div>
+        </motion.div>
 
         {/* Kanban Board Container */}
         <div className="w-full">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+          <div className="flex md:grid overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none md:grid-cols-3 gap-6 md:gap-8 items-start pb-12 md:pb-0 px-6 md:px-0 [&::-webkit-scrollbar]:hidden">
             {columns.map((col, cIdx) => {
               const isDragOver = dragOverColIdx === cIdx;
               
@@ -186,7 +198,7 @@ export default function PlansSection() {
                 >
                   {/* Header */}
                   <div className="flex justify-between items-center mb-8 pb-6 border-b-[4px] border-current">
-                    <h3 className="font-heading text-5xl">
+                    <h3 className="font-heading text-4xl md:text-5xl">
                       {col.title}
                     </h3>
                     <div className="px-4 py-1.5 rounded-full text-lg font-bold bg-white text-black border-[4px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
@@ -195,7 +207,7 @@ export default function PlansSection() {
                   </div>
 
                   {/* Tasks List */}
-                  <div className="flex flex-col gap-6 min-h-[400px]">
+                  <div className="flex flex-col gap-6 md:min-h-[400px]">
                     {col.tasks.map((task, tIdx) => (
                       <div
                         key={task.id}
@@ -204,16 +216,16 @@ export default function PlansSection() {
                         className={getTaskClasses(col.theme)}
                       >
                         {/* Priority Badge */}
-                        <div className="absolute top-6 right-6">
-                          <span className={`px-4 py-1 rounded-full border-[3px] border-black font-bold text-xs shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] ${task.priority === 'High' ? 'bg-red-500 text-white' : task.priority === 'Medium' ? 'bg-yellow-400 text-black' : 'bg-blue-400 text-black'}`}>
+                        <div className="absolute top-4 md:top-6 right-4 md:right-6">
+                          <span className={`px-3 py-1 md:px-4 md:py-1 rounded-full border-[3px] border-black font-bold text-[10px] md:text-xs shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] ${task.priority === 'High' ? 'bg-red-500 text-white' : task.priority === 'Medium' ? 'bg-yellow-400 text-black' : 'bg-blue-400 text-black'}`}>
                             {task.priority}
                           </span>
                         </div>
 
-                        <h4 className="font-heading text-3xl mb-4 pr-20 leading-tight">
+                        <h4 className="font-heading text-2xl md:text-3xl mb-3 md:mb-4 pr-16 md:pr-20 leading-tight">
                           {task.title}
                         </h4>
-                        <p className="font-sans text-xl font-medium leading-relaxed mb-4 text-black/80">
+                        <p className="font-sans text-lg md:text-xl font-medium leading-relaxed mb-4 text-black/80">
                           {task.desc}
                         </p>
                       </div>

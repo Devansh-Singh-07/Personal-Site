@@ -1,18 +1,37 @@
+"use client";
+
 import { Sparkles, Code2, Database, Smartphone, GitBranch, Layers, Cpu, Code } from "lucide-react";
+import { motion, Variants } from "framer-motion";
 
 export default function SkillsSection() {
+  const cardVariants: Variants = {
+    hidden: { scale: 0.9, opacity: 0.6 },
+    visible: { scale: 1, opacity: 1, transition: { duration: 0.4, ease: "easeOut" } }
+  };
+
   return (
     <section id="skills" className="py-20 bg-[#E2FF3E] text-black">
       <div className="max-w-[1728px] mx-auto px-8 md:px-16">
-        <h2 className="font-heading text-5xl md:text-[120px] leading-none mb-16 uppercase text-black">
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          className="font-heading text-5xl md:text-[120px] leading-none mb-16 uppercase text-black"
+        >
           Arsenal
-        </h2>
+        </motion.h2>
 
         {/* Bento Grid Layout (Horizontal Scroll on Mobile, Grid on Desktop) */}
         <div className="flex md:grid overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none md:grid-cols-4 auto-rows-auto md:auto-rows-[300px] gap-6 pb-10 md:pb-0 [&::-webkit-scrollbar]:hidden -mx-8 px-8 md:mx-0 md:px-0">
-          
+
           {/* Card 1: Frontend */}
-          <div className="shrink-0 snap-center w-[85vw] md:w-auto md:col-span-1 md:row-span-1 bg-white border-[6px] border-black rounded-[40px] p-6 md:p-8 flex flex-col justify-between relative group overflow-hidden shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:-translate-x-2 transition-all duration-300 min-h-[150px] md:min-h-[300px]">
+          <motion.div
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ amount: 0.6 }}
+            className="shrink-0 snap-center w-[85vw] md:w-auto md:col-span-1 md:row-span-1 bg-white border-[6px] border-black rounded-[40px] p-6 md:p-8 flex flex-col justify-between relative group overflow-hidden shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:-translate-x-2 transition-all duration-300 min-h-[150px] md:min-h-[300px]"
+          >
             <div className="z-10 flex justify-between items-start">
               <h3 className="font-heading text-4xl text-black">Frontend</h3>
               <Layers className="w-12 h-12 text-black" />
@@ -23,10 +42,16 @@ export default function SkillsSection() {
             <div className="absolute -right-10 -bottom-10 opacity-10 transform group-hover:rotate-45 transition-transform duration-1000">
               <Layers className="w-64 h-64 text-black" />
             </div>
-          </div>
+          </motion.div>
 
           {/* Card 2: iOS Native */}
-          <div className="shrink-0 snap-center w-[85vw] md:w-auto md:col-span-1 md:row-span-1 bg-[#52057E] border-[6px] border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] rounded-[40px] p-6 md:p-8 flex flex-col justify-between relative group overflow-hidden min-h-[150px] md:min-h-[300px] hover:-translate-y-2 hover:-translate-x-2 hover:shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] transition-all duration-300">
+          <motion.div
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ amount: 0.6 }}
+            className="shrink-0 snap-center w-[85vw] md:w-auto md:col-span-1 md:row-span-1 bg-[#52057E] border-[6px] border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] rounded-[40px] p-6 md:p-8 flex flex-col justify-between relative group overflow-hidden min-h-[150px] md:min-h-[300px] hover:-translate-y-2 hover:-translate-x-2 hover:shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] transition-all duration-300"
+          >
             <div className="z-10 flex justify-between items-start">
               <h3 className="font-heading text-4xl text-white">iOS<br />Native</h3>
               <Smartphone className="w-12 h-12 text-[#E2FF3E]" />
@@ -34,10 +59,16 @@ export default function SkillsSection() {
             <div className="z-10">
               <p className="font-body text-2xl text-[#E2FF3E]">SwiftUI • UIKit<br />MVVM • CoreData</p>
             </div>
-          </div>
+          </motion.div>
 
           {/* Card 3: Backend & DB */}
-          <div className="shrink-0 snap-center w-[85vw] md:w-auto md:col-span-1 md:row-span-1 bg-[#1E1E1E] border-[6px] border-black rounded-[40px] p-6 md:p-8 flex flex-col justify-between relative overflow-hidden group shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:-translate-x-2 transition-all duration-300 min-h-[150px] md:min-h-[300px]">
+          <motion.div
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ amount: 0.6 }}
+            className="shrink-0 snap-center w-[85vw] md:w-auto md:col-span-1 md:row-span-1 bg-[#1E1E1E] border-[6px] border-black rounded-[40px] p-6 md:p-8 flex flex-col justify-between relative overflow-hidden group shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:-translate-x-2 transition-all duration-300 min-h-[150px] md:min-h-[300px]"
+          >
             <div className="flex justify-between items-start">
               <h3 className="font-heading text-4xl text-[#E2FF3E]">Backend<br />& DB</h3>
               <Database className="w-12 h-12 text-[#E2FF3E]" />
@@ -45,10 +76,16 @@ export default function SkillsSection() {
             <div className="z-10 mt-auto">
               <p className="font-body text-2xl text-gray-300">Node.js • Express<br />MongoDB • Postgres</p>
             </div>
-          </div>
+          </motion.div>
 
           {/* Card 4: Core Languages */}
-          <div className="shrink-0 snap-center w-[85vw] md:w-auto md:col-span-1 md:row-span-2 bg-white border-[6px] border-black rounded-[40px] p-6 md:p-8 flex flex-col relative min-h-[150px] md:min-h-0 group shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:-translate-x-2 transition-all duration-300">
+          <motion.div
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ amount: 0.6 }}
+            className="shrink-0 snap-center w-[85vw] md:w-auto md:col-span-1 md:row-span-2 bg-white border-[6px] border-black rounded-[40px] p-6 md:p-8 flex flex-col relative min-h-[150px] md:min-h-0 group shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:-translate-x-2 transition-all duration-300"
+          >
             <div>
               <div className="w-16 h-16 bg-black rounded-2xl hidden md:flex items-center justify-center mb-8 transform group-hover:rotate-12 transition-transform">
                 <Code className="w-8 h-8 text-[#E2FF3E]" />
@@ -68,7 +105,7 @@ export default function SkillsSection() {
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Card 5: Tools & Workflow (Hidden on Mobile - rendered below) */}
           <div className="hidden md:flex md:col-span-3 md:row-span-1 bg-black rounded-[40px] p-8 flex-col justify-center relative overflow-hidden border-[6px] border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:-translate-x-2 transition-all duration-300 min-h-[300px]">
@@ -93,7 +130,12 @@ export default function SkillsSection() {
         </div>
 
         {/* Mobile Tools & Workflow (Static, under the carousel) */}
-        <div className="md:hidden mt-6 bg-black rounded-[40px] p-6 flex flex-col justify-center relative overflow-hidden border-[6px] border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] h-[160px]">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          className="md:hidden mt-6 bg-black rounded-[40px] p-6 flex flex-col justify-center relative overflow-hidden border-[6px] border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] h-[160px]"
+        >
           <div className="flex items-center gap-2 mb-4">
             <GitBranch className="w-5 h-5 text-gray-400" />
             <span className="font-sans text-xs font-bold text-gray-400 uppercase tracking-widest">Workflow & Tools</span>
@@ -110,7 +152,7 @@ export default function SkillsSection() {
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
